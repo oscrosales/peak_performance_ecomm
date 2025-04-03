@@ -1,7 +1,9 @@
 class Product < ApplicationRecord
   belongs_to :brand
 
-  validates :name, :price, :description, :stock, presence: true
+  has_one_attached :image
+
+  validates :name, :price, :description, :stock_quantity, presence: true
 
   def self.ransackable_associations(auth_object = nil)
     [ "brand" ]
