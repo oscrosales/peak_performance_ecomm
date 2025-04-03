@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "brands/index"
+  get "brands/show"
+  get "categories/idex"
+  get "categories/show"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
