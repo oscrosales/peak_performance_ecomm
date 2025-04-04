@@ -2,6 +2,11 @@
 
 <% @products.each do |product| %>
   <div>
-    <%= product.name %>
+    <h3><%= product.brand.name %></h3>
+    <%= link_to product.name, product %>
+
+    <% if product.image.present? %>
+      <%= image_tag product.image %>
+    <% end %>
   </div>
 <% end %>
