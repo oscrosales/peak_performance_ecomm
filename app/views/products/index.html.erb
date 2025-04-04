@@ -1,12 +1,7 @@
 <h1>Products</h1>
 
 <% @products.each do |product| %>
-  <div>
-    <h3><%= product.brand.name %></h3>
-    <%= link_to product.name, product %>
-
-    <% if product.image.present? %>
-      <%= image_tag product.image %>
-    <% end %>
-  </div>
+  <%= render partial: 'product',
+            object: product,
+            locals: { index: true, name_is_link: true } %>
 <% end %>

@@ -1,10 +1,5 @@
-<h1><%= @product.name %></h1>
+<% content_for :title, "#{@product.name}" %>
 
-<% if @product.image.present? %>
-  <%= image_tag @product.image %>
-<% end %>
-
-<h2><%= @product.price %></h2>
-<h4><%= @product.stock_quantity %> in Stock</h4>
-
-<p><%= @product.description %></p>
+<%= render partial: 'product',
+          object: @product,
+          locals: { index: false, name_is_link: false } %>

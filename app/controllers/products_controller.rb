@@ -5,6 +5,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.includes(:brand)
-                      .find_by("id = ?", params[:id])
+                      .find(params[:id])
   end
 end
