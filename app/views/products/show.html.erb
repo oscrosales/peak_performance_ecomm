@@ -1,4 +1,4 @@
-<% content_for(:html_title) { @product.name }%>
+<% content_for :title, "#{@product.name}" %>
 
 <%= render partial: 'product',
           object: @product,

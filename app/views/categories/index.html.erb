@@ -1,2 +1,10 @@
-<h1>Categories#index</h1>
-<p>Find me in app/views/categories/index.html.erb</p>
+<div class="section">
+  <div class="container">
+    <h1 class="title has-text-centered">Categories</h1>
+      <div class="columns is-multiline">
+        <%= render partial: 'category',
+                  collection: @categories,
+                  locals: { index: true, name_is_link: true } %>
+      </div>
+  </div>
+</div>

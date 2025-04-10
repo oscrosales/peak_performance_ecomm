@@ -1,2 +1,9 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div class="section">
+  <div class="container">
+    <h1 class="title has-text-centered"><%= @category.name %></h1>
+
+    <div class="columns is-multiline">
+      <%= render partial: 'products/product', collection: @products, locals: { index: true, name_is_link: true } %>
+    </div>
+  </div>
+</div>

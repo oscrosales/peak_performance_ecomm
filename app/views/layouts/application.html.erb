@@ -28,13 +28,23 @@
     <script src="https://kit.fontawesome.com/c31e4ff6de.js" crossorigin="anonymous"></script>
   </head>
 
-  <body style="background-color: #e8e8e8">
-    <div class="container mx-auto text-center">
-      <%= link_to image_tag("pp_logo.png", :alt => "Peak Performance logo", :class => "image has-text-centered"), root_path %>
+  <body class="is-fullheight" style="background-color: #e8e8e8;">
+    <div class="has-text-centered">
+      <div class="has-text-centered">
+        <%= link_to image_tag("pp_logo.png", :alt => "Peak Performance logo", :class => "pt-5 pb-5"), root_path %>
+      </div>
+
+      <div class="navbar box ml-6 mr-6">
+        <div class="navbar-menu is-flex is-justify-content-center">
+          <%= link_to "Products", products_path, :class => "title is-4 navbar-item ml-3 mr-3 mb-0" %>
+
+          <%= link_to "Categories", categories_path, :class => "title is-4 navbar-item ml-3 mr-3 mb-0" %>
+
+          <%= link_to "Brands", root_path, :class => "title is-4 navbar-item ml-3 mr-3 mb-0" %>
+        </div>
+      </div>
 
       <%= yield %>
     </div>
-
-
   </body>
 </html>

@@ -3,11 +3,9 @@
     <h1 class="title has-text-centered">Products</h1>
 
     <div class="columns is-multiline">
-      <% @products.each do |product| %>
-        <%= render partial: 'product',
-                  object: product,
-                  locals: { index: true, name_is_link: true } %>
-      <% end %>
+      <%= render partial: 'product',
+                collection: @products,
+                locals: { index: true, name_is_link: true } %>
     </div>
   </div>
 </div>
