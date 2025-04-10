@@ -4,6 +4,8 @@ class Product < ApplicationRecord
   has_one_attached :image
 
   validates :name, :price, :description, :stock_quantity, presence: true
+  validates :price, numericality: true
+  validates :stock_quantity, numericality: { only_integer: true }
 
   def self.ransackable_associations(auth_object = nil)
     [ "brand" ]

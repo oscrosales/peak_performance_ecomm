@@ -1,20 +1,33 @@
-<div class="card" style="width: 500px;">
-  <h1>
-    <% if name_is_link%>
-      <%= link_to product.name, product %>
-    <% else %>
-      <%= product.name %>
-    <% end%>
-  </h1>
+<div class="column is-one-third">
+  <div class="card is-fullheight">
 
-  <% if product.image.present? %>
-    <%= image_tag product.image, :alt => product.name, :class => "img-fluid img-thumbnail rounded mx-auto " %>
-  <% end %>
+    <div class="card-image">
+      <figure class="image is-1by1">
+        <% if product.image.present? %>
+          <%= image_tag product.image, alt: product.name, :class => "image p-5" %>
+        <% else %>
+          <%= image_tag("no-image-icon.png", :alt => "No image found", :class => "image p-5") %>
+        <% end %>
+      </figure>
+    </div>
 
-  <% if index == false %>
-    <h2><%= product.price %></h2>
-    <h4><%= product.stock_quantity %> in Stock</h4>
+    <div class="card-content">
+      <div class="content has-text-centered">
+        <h5 class="title is-5 mb-2">
+          <p class="is-size-8 has-text-grey mb-1"><%= product.brand.name %></p>
+          <% if name_is_link %>
+            <%= link_to product.name, product, class: "has-text-link" %>
+          <% else %>
+            <%= product.name %>
+          <% end %>
+        </h5>
 
-    <p><%= product.description %></p>
-  <% end %>
+        <% unless index %>
+          <h2 class="subtitle is-6 has-text-weight-bold"><%= product.price %></h2>
+          <p class="is-size-7 mb-2"><%= product.stock_quantity %> in Stock</p>
+          <p class="is-size-7"><%= product.description %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
