@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  def idex
+  def index
   end
 
   def show

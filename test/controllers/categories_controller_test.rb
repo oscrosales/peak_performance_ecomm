@@ -1,8 +1,8 @@
 require "test_helper"
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
-  test "should get idex" do
-    get categories_idex_url
+  test "should get index" do
+    get categories_index_url
     assert_response :success
   end
 
