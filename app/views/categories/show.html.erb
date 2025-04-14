@@ -3,7 +3,9 @@
     <h1 class="title has-text-centered"><%= @category.name %></h1>
 
     <div class="columns is-multiline">
-      <%= render partial: 'products/product', collection: @products, locals: { index: true, name_is_link: true } %>
+      <%= render partial: 'products/product',
+                 collection: @products,
+                 locals: { is_index: true, name_is_link: true } %>
     </div>
   </div>
 </div>
