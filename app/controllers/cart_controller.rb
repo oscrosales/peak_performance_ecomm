@@ -9,18 +9,20 @@ class CartController < ApplicationController
     quantity = 1 if quantity < 1
 
     session[:cart][@product.id] = quantity
-    flash[:notice] = "#{@product.name} was added to the cart"
+    flash[:notice] = "#{@product.name} (x#{quantity}) was added to the cart"
 
     redirect_to root_path
   end
 
   def destroy
-    if session[:cart].include?(@product.id)
-      session[:cart].delete(@product.id)
-      flash[:notice] = "#{@product.name} (x#{quantity}) was removed from the cart"
+    product_id = @product.id.to_s
+
+    if session[:cart].key?(product_id)
+      session[:cart].delete(product_id)
+      flash[:notice] = "#{@product.name} was removed from the cart"
     end
 
-    redirect_to root_path
+    redirect_to cart_index_path
   end
 
   private
