@@ -26,6 +26,13 @@
           <h2 class="subtitle is-6 has-text-weight-bold"><%= product.price %></h2>
           <p class="is-size-7 mb-2"><%= product.stock_quantity %> in Stock</p>
           <p class="is-size-7"><%= product.description %></p>
+
+          <% unless cart.include? product %>
+            <%= form_with url: cart_index_path do %>
+              <%= hidden_field_tag(:id, product.id) %>
+              <%= button_tag "Add to Cart" %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
     </div>
