@@ -1,10 +1,12 @@
 <div class="column is-one-third">
-  <div class="card is-fullheight">
+  <% if is_index %>
+    <div class="card is-fullheight">
+  <% end %>
 
     <div class="card-image">
       <figure class="image is-1by1">
         <% if product.image.present? %>
-          <%= image_tag product.image, alt: product.name, :class => "image p-5" %>
+          <%= image_tag product.image.variant(resize_to_limit: [350, 350]).processed, alt: product.name, :class => "image p-5" %>
         <% else %>
           <%= image_tag("no-image-icon.png", :alt => "No image found", :class => "image p-5") %>
         <% end %>
@@ -39,5 +41,7 @@
         <% end %>
       </div>
     </div>
-  </div>
+  <% if is_index %>
+    </div>
+  <% end %>
 </div>
