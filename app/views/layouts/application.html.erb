@@ -28,21 +28,21 @@
     <script src="https://kit.fontawesome.com/c31e4ff6de.js" crossorigin="anonymous"></script>
   </head>
 
-  <body class="is-fullheight" style="background-color: #e8e8e8;">
+  <body class="is-fullheight has-background-grey-lighter">
     <div class="has-text-centered">
       <div class="has-text-centered">
         <%= link_to image_tag("pp_logo.png", :alt => "Peak Performance logo", :class => "pt-5 pb-5"), root_path %>
       </div>
 
       <div class="navbar box ml-2 mr-2 has-text-centered">
-        <div class="navbar-menu is-flex is-justify-content-center pl-6 pr-6">
-          <%= link_to "Products", products_path, :class => "title is-4 navbar-item ml-3 mr-3 mb-0" %>
+        <div class="navbar-menu is-flex is-flex-direction-column-mobile is-flex-direction-row-tablet is-align-items-center is-justify-content-center pl-6 pr-6 is-flex-wrap-wrap">
+          <%= link_to "Products", products_path, class: "title is-5 navbar-item mx-3 mb-2 mb-0-tablet" %>
 
-          <%= link_to "Categories", categories_path, :class => "title is-4 navbar-item ml-3 mr-3 mb-0" %>
+          <%= link_to "Categories", categories_path, class: "title is-5 navbar-item mx-3 mb-2 mb-0-tablet" %>
 
-          <%= link_to "Brands", root_path, :class => "title is-4 navbar-item ml-3 mr-3 mb-0" %>
+          <%= link_to "Brands", root_path, class: "title is-5 navbar-item mx-3 mb-2 mb-0-tablet" %>
 
-          <%= link_to "", cart_index_path, :class => "title is-4 navbar-item mt-2 fa-solid fa-cart-shopping navbar-end" %>
+          <%= link_to "", cart_index_path, class: "title is-5 navbar-item fa-solid fa-cart-shopping navbar-end mx-3 mt-1 mt-0-tablet" %>
         </div>
       </div>
 
@@ -53,6 +53,20 @@
       <% end %>
 
       <%= yield %>
+
+    <footer class="footer has-background-light mt-6">
+      <div class="content has-text-centered">
+        <p>
+          <%= link_to "About", root_path, class: "has-text-grey-dark mx-3" %>
+          |
+          <%= link_to "Contact", root_path, class: "has-text-grey-dark mx-3" %>
+        </p>
+        <p class="is-size-7 has-text-grey">
+          &copy; <%= Time.current.year %> Peak Performance. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
     </div>
   </body>
 </html>
