@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :products, only: [ :index, :show ]
+  resources :products, only: [ :index, :show ] do
+    collection do
+      get "search_results"
+    end
+  end
   resources :categories, only: [ :index, :show ]
   resources :cart, only: [ :index, :create, :destroy ]
 

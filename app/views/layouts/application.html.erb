@@ -34,15 +34,34 @@
         <%= link_to image_tag("pp_logo.png", :alt => "Peak Performance logo", :class => "pt-5 pb-5"), root_path %>
       </div>
 
+      <div class="is-flex is-justify-content-flex-end mr-6 mb-2">
+        <%= link_to "", cart_index_path, class: "title is-5 fa-solid fa-cart-shopping mx-3 mt-1 mt-0-tablet" %>
+      </div>
+
       <div class="navbar box ml-2 mr-2 has-text-centered">
-        <div class="navbar-menu is-flex is-flex-direction-column-mobile is-flex-direction-row-tablet is-align-items-center is-justify-content-center pl-6 pr-6 is-flex-wrap-wrap">
+        <div class="navbar-menu is-flex is-flex-direction-column-mobile is-flex-direction-row-tablet
+            is-align-items-center is-justify-content-center pl-6 pr-6 is-flex-wrap-wrap">
           <%= link_to "Products", products_path, class: "title is-5 navbar-item mx-3 mb-2 mb-0-tablet" %>
 
           <%= link_to "Categories", categories_path, class: "title is-5 navbar-item mx-3 mb-2 mb-0-tablet" %>
 
           <%= link_to "Brands", root_path, class: "title is-5 navbar-item mx-3 mb-2 mb-0-tablet" %>
 
-          <%= link_to "", cart_index_path, class: "title is-5 navbar-item fa-solid fa-cart-shopping navbar-end mx-3 mt-1 mt-0-tablet" %>
+          <%= form_with(url: search_results_products_path, method: "get", local: true, class: "navbar-end") do %>
+            <div class="field is-flex">
+              <%= select_tag :category, options_from_collection_for_select(categories, "id", "name"),
+                  include_blank: true, class: "select mt-1 mr-1" %>
+
+              <div class="control" style="flex-grow: 1;">
+                <%= text_field_tag(:query, nil, placeholder: "Search for a Product",
+                    class: "input subtitle is-6 is-fullwidth") %>
+              </div>
+
+              <%= button_tag(type: "submit", class: "button") do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
 

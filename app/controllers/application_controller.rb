@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   before_action :initialize_session
   helper_method :cart
+  helper_method :categories
   helper_method :product_in_cart?
 
   private
@@ -21,6 +22,10 @@ class ApplicationController < ActionController::Base
         total: product.price * quantity
       }
     end
+  end
+
+  def categories
+    Category.all()
   end
 
   def product_in_cart?(product)

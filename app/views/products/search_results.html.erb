@@ -1,0 +1,17 @@
+<p class="subtitle is-5">
+  Your search for '<%= @query %>' returned <%= pluralize(@products.size, 'result') %>.
+</p>
+
+<div class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <%= render partial: 'product',
+                 collection: @products,
+                 locals: { is_index: true, name_is_link: true } %>
+    </div>
+  </div>
+</div>
+
+<div class="pagination-links has-text-centered mt-5">
+  <%= paginate @products %>
+</div>
