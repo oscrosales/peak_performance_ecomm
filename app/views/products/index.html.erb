@@ -4,8 +4,12 @@
 
     <div class="columns is-multiline">
       <%= render partial: 'product',
-                collection: @products,
-                locals: { index: true, name_is_link: true } %>
+                 collection: @products,
+                 locals: { is_index: true, name_is_link: true } %>
     </div>
   </div>
+</div>
+
+<div class=" pagination-links has-text-centered mt-5">
+  <%= paginate @products %>
 </div>

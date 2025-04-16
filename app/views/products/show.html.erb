@@ -1,5 +1,5 @@
 <% content_for :title, "#{@product.name}" %>
 
 <%= render partial: 'product',
-          object: @product,
-          locals: { index: false, name_is_link: false } %>
+           object: @product,
+           locals: { is_index: false, name_is_link: false } %>
