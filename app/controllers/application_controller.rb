@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
 
       {
         product: product,
-        quantity: quantity
+        quantity: quantity,
+        total: product.price * quantity
       }
     end
   end

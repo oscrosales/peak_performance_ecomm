@@ -1,6 +1,9 @@
 class CartController < ApplicationController
   before_action :get_product, only: [ :create, :destroy ]
 
+  def index
+  end
+
   def create
     quantity = params[:quantity].to_i
     quantity = 1 if quantity < 1

@@ -1,0 +1,18 @@
+<div class="section">
+  <div class="container">
+    <h1 class="title has-text-centered">Cart</h1>
+
+    <div class="columns is-multiline">
+      <% cart.each do |product| %>
+        <div class="box">
+          <h5 class="title is-5">
+            <%= link_to product[:product].name, product, class: "has-text-link" %>
+          </h5>
+          <p>Price: $<%= product[:product].price %></p>
+          <p>Quantity: <%= product[:quantity] %></p>
+          <p class="subtitle">Total: $<%= product[:total] %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

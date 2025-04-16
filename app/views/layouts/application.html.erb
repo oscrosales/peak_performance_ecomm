@@ -34,15 +34,23 @@
         <%= link_to image_tag("pp_logo.png", :alt => "Peak Performance logo", :class => "pt-5 pb-5"), root_path %>
       </div>
 
-      <div class="navbar box ml-6 mr-6">
-        <div class="navbar-menu is-flex is-justify-content-center">
+      <div class="navbar box ml-2 mr-2">
+        <div class="navbar-menu is-flex is-justify-content-center pl-6 pr-6">
           <%= link_to "Products", products_path, :class => "title is-4 navbar-item ml-3 mr-3 mb-0" %>
 
           <%= link_to "Categories", categories_path, :class => "title is-4 navbar-item ml-3 mr-3 mb-0" %>
 
           <%= link_to "Brands", root_path, :class => "title is-4 navbar-item ml-3 mr-3 mb-0" %>
+
+          <%= link_to "", cart_index_path, :class => "title is-4 navbar-item mt-2 fa-solid fa-cart-shopping navbar-end" %>
         </div>
       </div>
+
+      <% flash.each do |type, msg| %>
+        <div>
+          <%= msg %>
+        </div>
+      <% end %>
 
       <%= yield %>
     </div>
