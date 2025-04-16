@@ -27,11 +27,14 @@
           <p class="is-size-7 mb-2"><%= product.stock_quantity %> in Stock</p>
           <p class="is-size-7"><%= product.description %></p>
 
-          <% unless cart.include? product %>
+          <% unless product_in_cart?(product) %>
             <%= form_with url: cart_index_path do %>
               <%= hidden_field_tag(:id, product.id) %>
+              <%= number_field_tag :quantity, 1, min: 1, max: product.stock_quantity %>
               <%= button_tag "Add to Cart" %>
             <% end %>
+          <% else %>
+            <p>Added to cart</p>
           <% end %>
         <% end %>
       </div>

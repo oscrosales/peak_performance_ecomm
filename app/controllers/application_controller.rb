@@ -3,14 +3,26 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   before_action :initialize_session
   helper_method :cart
+  helper_method :product_in_cart?
 
   private
 
   def initialize_session
-    session[:cart] ||= []
+    session[:cart] ||= {}
   end
 
   def cart
-    Product.find(session[:cart])
+    session[:cart].map do | product_id, quantity |
+      product = Product.find_by(id: product_id)
+
+      {
+        product: product,
+        quantity: quantity
+      }
+    end
+  end
+
+  def product_in_cart?(product)
+    cart.any? { |item| item[:product].id == product.id }
   end
 end
