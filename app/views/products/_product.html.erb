@@ -1,22 +1,46 @@
-<div class="column is-one-third">
-  <% if is_index %>
+<% if is_index %>
+  <div class="column is-one-third">
     <div class="card is-fullheight">
-  <% end %>
+      <div class="card-image">
+        <figure class="image is-1by1">
+          <% if product.image.present? %>
+            <%= image_tag product.image.variant(resize_to_limit: [400, 400]).processed, alt: product.name, class: "image p-5" %>
+          <% else %>
+            <%= image_tag "no-image-icon.png", alt: "No image found", class: "image p-5" %>
+          <% end %>
+        </figure>
+      </div>
 
-    <div class="card-image">
+      <div class="card-content">
+        <div class="content has-text-centered">
+          <h5 class="title is-5 mb-2">
+            <p class="is-size-8 has-text-grey mb-1"><%= product.brand.name %></p>
+            <% if name_is_link %>
+              <%= link_to product.name, product, class: "has-text-link" %>
+            <% else %>
+              <%= product.name %>
+            <% end %>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="columns is-vcentered">
+    <div class="column is-one-quarter"></div>
+    <div class="column is-one-quarter">
       <figure class="image is-1by1">
         <% if product.image.present? %>
-          <%= image_tag product.image.variant(resize_to_limit: [350, 350]).processed, alt: product.name, :class => "image p-5" %>
+          <%= image_tag product.image, alt: product.name, class: "ml-6" %>
         <% else %>
-          <%= image_tag("no-image-icon.png", :alt => "No image found", :class => "image p-5") %>
+          <%= image_tag "no-image-icon.png", alt: "No image found", class: "image p-5" %>
         <% end %>
       </figure>
     </div>
 
-    <div class="card-content">
-      <div class="content has-text-centered">
-        <h5 class="title is-5 mb-2">
-          <p class="is-size-8 has-text-grey mb-1"><%= product.brand.name %></p>
+    <div class="column">
+      <div class="content">
+        <h5 class="title is-4 mb-2">
           <% if name_is_link %>
             <%= link_to product.name, product, class: "has-text-link" %>
           <% else %>
@@ -24,24 +48,26 @@
           <% end %>
         </h5>
 
-        <% unless is_index %>
-          <h2 class="subtitle is-6 has-text-weight-bold"><%= product.price %></h2>
-          <p class="is-size-7 mb-2"><%= product.stock_quantity %> in Stock</p>
-          <p class="is-size-7"><%= product.description %></p>
+        <h2 class="subtitle is-6 has-text-weight-bold"><%= product.price %></h2>
+        <p class="is-size-7 mb-2"><%= product.stock_quantity %> in Stock</p>
+        <p class="is-size-7"><%= product.description %></p>
 
-          <% unless product_in_cart?(product) %>
-            <%= form_with url: cart_index_path do %>
-              <%= hidden_field_tag(:id, product.id) %>
-              <%= number_field_tag :quantity, 1, min: 1, max: product.stock_quantity %>
-              <%= button_tag "Add to Cart" %>
-            <% end %>
-          <% else %>
-            <p>Added to cart</p>
+        <% unless product_in_cart?(product) %>
+          <%= form_with url: cart_index_path do %>
+            <%= hidden_field_tag :id, product.id %>
+            <div class="field">
+              <div class="control">
+                <%= number_field_tag :quantity, 1, min: 1, max: product.stock_quantity, class: "input", style: "width: 80px;" %>
+              </div>
+              <div class="control">
+                <%= button_tag "Add to Cart", class: "button is-success" %>
+              </div>
+            </div>
           <% end %>
+        <% else %>
+          <p class="has-text-success">Added to cart</p>
         <% end %>
       </div>
     </div>
-  <% if is_index %>
-    </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

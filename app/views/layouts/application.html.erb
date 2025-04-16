@@ -34,7 +34,7 @@
         <%= link_to image_tag("pp_logo.png", :alt => "Peak Performance logo", :class => "pt-5 pb-5"), root_path %>
       </div>
 
-      <div class="navbar box ml-2 mr-2">
+      <div class="navbar box ml-2 mr-2 has-text-centered">
         <div class="navbar-menu is-flex is-justify-content-center pl-6 pr-6">
           <%= link_to "Products", products_path, :class => "title is-4 navbar-item ml-3 mr-3 mb-0" %>
 
@@ -47,7 +47,7 @@
       </div>
 
       <% flash.each do |type, msg| %>
-        <div>
+        <div class="notification has-text-centered ml-6 mr-6">
           <%= msg %>
         </div>
       <% end %>
