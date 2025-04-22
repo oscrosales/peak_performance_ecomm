@@ -36,7 +36,9 @@
 
       <div class="is-flex is-justify-content-flex-end mr-6 mb-2">
         <% if user_signed_in? %>
-          Welcome, <%= current_user.name %> <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "has-text-link ml-2" %>
+          Welcome, <%= current_user.name %> - <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "has-text-link ml-2" %>
+        <% else %>
+          <%= button_to "Log In", new_user_session_path, method: :get, class: "has-text-link ml-2" %>
         <% end %>
         <%= link_to "", cart_index_path, class: "title is-5 fa-solid fa-cart-shopping mx-3 mt-1 mt-0-tablet" %>
       </div>
