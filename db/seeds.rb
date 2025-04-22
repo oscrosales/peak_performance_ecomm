@@ -20,11 +20,6 @@ Provinces.each do |province|
   Province.create!(province)
 end
 
-
-Provinces.each do |province|
-  Province.create!(province)
-end
-
 # AdminUser.create!(
 #     email: 'admin@example.com',
 #     password: 'password',
