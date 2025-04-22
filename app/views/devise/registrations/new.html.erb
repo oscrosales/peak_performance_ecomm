@@ -62,6 +62,13 @@
       </div>
 
       <div class="field">
+        <%= form.label :postal_code, class: "label" %>
+        <div class="control">
+          <%= form.text_field :postal_code, class: "input" %>
+        </div>
+      </div>
+
+      <div class="field">
         <%= form.label :phone, class: "label" %>
         <div class="control">
           <%= form.telephone_field :phone, class: "input" %>

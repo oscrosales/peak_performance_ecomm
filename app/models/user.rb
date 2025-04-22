@@ -10,4 +10,6 @@ class User < ApplicationRecord
 
   validates :name, :username, :address, :city, :province, :postal_code, :phone, presence: true
   validates :username, uniqueness: true
+  validates :postal_code, format: { with: /\A[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z] ?\d[ABCEGHJ-NPRSTV-Z]\d\z/i,
+                                    message: "Must be a valid postal code" }
 end
