@@ -24,7 +24,18 @@
                   <%= link_to product[:product].name, product[:product], class: "has-text-link" %>
                 </h5>
                 <p class="is-size-6">Price: $<%= product[:product].price %></p>
-                <p class="is-size-6">Quantity: <%= product[:quantity] %></p>
+
+                <%= form_with url: update_quantity_cart_path(product[:product].id), method: :patch, local: true do |f| %>
+                  <div class="field has-addons is-align-items-stretch">
+                    <div class="control">
+                      <%= f.number_field :quantity, value: product[:quantity], min: 0, class: "input", style: "width: 80px;" %>
+                    </div>
+                    <div class="control">
+                      <%= f.submit "Update", class: "button" %>
+                    </div>
+                  </div>
+                <% end %>
+
                 <p class="is-size-6 has-text-weight-semibold">Total: $<%= product[:total] %></p>
               </div>
 

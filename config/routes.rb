@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: [ :index, :show ]
-  resources :cart, only: [ :index, :create, :destroy ]
+  resources :cart, only: [ :index, :create, :destroy ] do
+    patch "update_quantity", on: :member
+  end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

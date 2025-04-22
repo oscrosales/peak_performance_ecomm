@@ -32,7 +32,7 @@
     <div class="column is-one-quarter">
       <figure class="image is-1by1">
         <% if product.image.present? %>
-          <%= image_tag product.image, alt: product.name, class: "ml-6" %>
+          <%= image_tag product.image, alt: product.name, class: "ml-6-desktop" %>
         <% else %>
           <%= image_tag "no-image-icon.png", alt: "No image found", class: "image p-5" %>
         <% end %>

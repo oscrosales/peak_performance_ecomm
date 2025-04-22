@@ -14,6 +14,23 @@ class CartController < ApplicationController
     redirect_to root_path
   end
 
+  def update_quantity
+    product_id = params[:id].to_s
+    new_quantity = params[:quantity].to_i
+
+    if session[:cart].key?(product_id)
+      if new_quantity > 0
+        session[:cart][product_id] = new_quantity
+        flash[:notice] = "Quantity updated for #{Product.find(product_id).name}"
+      else
+        session[:cart].delete(product_id)
+        flash[:alert] = "Item removed because quantity was set to 0"
+      end
+    end
+
+    redirect_to cart_index_path
+  end
+
   def destroy
     product_id = @product.id.to_s
 
