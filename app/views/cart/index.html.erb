@@ -25,13 +25,13 @@
                 </h5>
                 <p class="is-size-6">Price: $<%= product[:product].price %></p>
 
-                <%= form_with url: update_quantity_cart_path(product[:product].id), method: :patch, local: true do |f| %>
+                <%= form_with url: update_quantity_cart_path(product[:product].id), method: :patch, local: true do |form| %>
                   <div class="field has-addons is-align-items-stretch">
                     <div class="control">
-                      <%= f.number_field :quantity, value: product[:quantity], min: 0, class: "input", style: "width: 80px;" %>
+                      <%= form.number_field :quantity, value: product[:quantity], min: 0, class: "input", style: "width: 80px;" %>
                     </div>
                     <div class="control">
-                      <%= f.submit "Update", class: "button" %>
+                      <%= form.submit "Update", class: "button" %>
                     </div>
                   </div>
                 <% end %>
