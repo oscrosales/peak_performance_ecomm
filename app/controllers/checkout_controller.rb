@@ -27,6 +27,7 @@ class CheckoutController < ApplicationController
   end
 
   def success
+    session[:cart] = {}
   end
 
   def cancel
