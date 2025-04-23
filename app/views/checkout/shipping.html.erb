@@ -5,17 +5,17 @@
     <%= form_with url: checkout_invoice_path, method: :post, data: { turbo: false }, local: true do |f| %>
       <div class="field">
         <%= f.label :name %>
-        <%= f.text_field :name, class: "input", value: current_user ? current_user.name : nil %>
+        <%= f.text_field :name, class: "input", value: current_user ? current_user.name : nil, required: true %>
       </div>
 
       <div class="field">
         <%= f.label :address %>
-        <%= f.text_field :address, class: "input", value: current_user ? current_user.address : nil %>
+        <%= f.text_field :address, class: "input", value: current_user ? current_user.address : nil, required: true %>
       </div>
 
       <div class="field">
         <%= f.label :city %>
-        <%= f.text_field :city, class: "input", value: current_user ? current_user.city : nil %>
+        <%= f.text_field :city, class: "input", value: current_user ? current_user.city : nil, required: true %>
       </div>
 
       <div class="field">
@@ -27,12 +27,12 @@
 
       <div class="field">
         <%= f.label :postal_code %>
-        <%= f.text_field :postal_code, class: "input", value: current_user ? current_user.postal_code : nil %>
+        <%= f.text_field :postal_code, class: "input", value: current_user ? current_user.postal_code : nil, required: true %>
       </div>
 
       <div class="field">
         <%= f.label :phone %>
-        <%= f.text_field :phone, class: "input", value: current_user ? current_user.phone : nil %>
+        <%= f.text_field :phone, class: "input", value: current_user ? current_user.phone : nil, required: true %>
       </div>
 
       <div class="control mt-4">
