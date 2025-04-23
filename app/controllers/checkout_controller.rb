@@ -3,11 +3,16 @@ class CheckoutController < ApplicationController
   end
 
   def invoice
+    session[:province_id] = params[:province_id]
   end
 
   def create
+    subtotal = 0
+
     line_items = session[:cart].map do | product_id, quantity |
       product = Product.find(product_id)
+      total_price = product.price * quantity.to_i
+      subtotal += total_price
       {
         price_data: {
           currency: "cad",
@@ -20,6 +25,30 @@ class CheckoutController < ApplicationController
         quantity: quantity
       }
     end
+
+    province = Province.find_by(id: session[:province_id])
+
+    if province.hst.present? && province.hst > 0
+      hst = province.hst * subtotal
+      tax_total = hst
+      tax_name = "HST"
+    else
+      gst = province.gst * subtotal
+      pst = province.pst * subtotal
+      tax_total = gst + pst
+      tax_name = "GST + PST"
+    end
+
+    line_items << {
+      price_data: {
+        currency: "cad",
+        product_data: {
+          name: tax_name
+        },
+        unit_amount: (tax_total * 100).round  # Ensures no float weirdness
+      },
+      quantity: 1
+    }
 
     session = Stripe::Checkout::Session.create(
       payment_method_types: [ "card" ],
