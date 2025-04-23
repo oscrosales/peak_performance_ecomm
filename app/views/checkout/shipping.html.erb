@@ -2,7 +2,7 @@
   <div class="container box">
     <h1 class="title has-text-centered">Shipping Information</h1>
 
-    <%= form_with url: checkout_invoice_path, method: :post, local: true do |f| %>
+    <%= form_with url: checkout_invoice_path, method: :post, data: { turbo: false }, local: true do |f| %>
       <div class="field">
         <%= f.label :name %>
         <%= f.text_field :name, class: "input", value: current_user ? current_user.name : nil %>
@@ -20,7 +20,9 @@
 
       <div class="field">
         <%= f.label :province_id, "Province" %>
-        <%= f.collection_select :province_id, Province.all, :id, :name, {}, { class: "input" } %>
+        <%= f.collection_select :province_id, Province.all, :id, :name,
+          {},
+          { class: "input", selected: current_user ? current_user.province_id : nil } %>
       </div>
 
       <div class="field">
@@ -34,7 +36,7 @@
       </div>
 
       <div class="control mt-4">
-        <%= f.submit "View Invoice", class: "button is-primary is-fullwidth" %>
+        <%= f.submit "View Invoice", class: "button is-primary" %>
       </div>
     <% end %>
   </div>

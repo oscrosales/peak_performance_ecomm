@@ -1,0 +1,69 @@
+<div class="section">
+  <div class="container box">
+    <h1 class="title has-text-centered">Invoice</h1>
+
+    <h2 class="subtitle">Shipping To:</h2>
+    <p><%= params[:name] %></p>
+    <p>
+      <%= params[:address] %>, <%= params[:city] %>,
+      <%= Province.find_by(id: params[:province_id])&.abbreviation %> <%= params[:postal_code] %>
+    </p>
+    <p><%= params[:phone] %></p>
+
+    <hr>
+
+    <h2 class="title is-5">Order Summary:</h2>
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% subtotal = 0 %>
+        <% session[:cart].each do |product_id, quantity| %>
+          <% product = Product.find(product_id) %>
+          <% quantity = quantity.to_i %>
+          <% total_price = quantity * product.price %>
+          <% subtotal += total_price %>
+
+          <tr>
+            <td><strong><%= product.name %></strong></td>
+            <td><%= quantity %></td>
+            <td>$<%= '%.2f' % product.price %></td>
+            <td>$<%= '%.2f' % total_price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <% province = Province.find_by(id: params[:province_id]) %>
+    <% gst = province.gst.to_f * subtotal %>
+    <% pst = province.pst.to_f * subtotal %>
+    <% hst = province.hst ? (province.gst + province.pst) * subtotal : 0 %>
+    <% taxes = hst > 0 ? hst : gst + pst %>
+    <% total = subtotal + taxes %>
+
+    <div class="box mt-4">
+      <p><strong>Subtotal:</strong> $<%= '%.2f' % subtotal %></p>
+
+      <% if province.hst %>
+        <p><strong>HST:</strong> $<%= '%.2f' % hst %></p>
+      <% else %>
+        <p><strong>GST:</strong> $<%= '%.2f' % gst %></p>
+        <p><strong>PST:</strong> $<%= '%.2f' % pst %></p>
+      <% end %>
+
+      <p><strong>Taxes Total:</strong> $<%= '%.2f' % taxes %></p>
+      <p class="is-size-5"><strong>Total:</strong> $<%= '%.2f' % total %></p>
+    </div>
+
+    <div class="buttons is-centered mt-4">
+      <%= link_to "Back to Cart", cart_index_path, class: "button is-light" %>
+      <%= button_to "Checkout", checkout_create_path, method: :post, data: { turbo: false }, class: "button is-primary" %>
+    </div>
+  </div>
+</div>

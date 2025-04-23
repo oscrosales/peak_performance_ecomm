@@ -3,7 +3,6 @@ class CheckoutController < ApplicationController
   end
 
   def invoice
-
   end
 
   def create

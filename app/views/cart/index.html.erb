@@ -54,7 +54,7 @@
         <h3 class="title is-4">Order Subtotal: $<%= cart.sum { |product| product[:total] } %></h3>
         <h3 class="title is-4">Tax: <span class="subtitle is-5">Calculated at checkout</span></h3>
         <%= button_to "Proceed", checkout_shipping_path,
-            method: :get, data: { turbo: false }, class: "button has-text-white is-primary is-medium" %>
+            method: :get, data: { turbo: false }, class: "button is-primary is-medium" %>
       </div>
     <% else %>
       <div class="notification has-text-centered">
