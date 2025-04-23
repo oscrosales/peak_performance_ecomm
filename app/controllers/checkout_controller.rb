@@ -1,4 +1,11 @@
 class CheckoutController < ApplicationController
+  def shipping
+  end
+
+  def invoice
+
+  end
+
   def create
     line_items = session[:cart].map do | product_id, quantity |
       product = Product.find(product_id)
