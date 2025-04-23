@@ -53,7 +53,7 @@
       <div class="box has-text-right">
         <h3 class="title is-4">Order Subtotal: $<%= cart.sum { |product| product[:total] } %></h3>
         <h3 class="title is-4">Tax: <span class="subtitle is-5">Calculated at checkout</span></h3>
-        <%= link_to "Checkout", root_path, class: "button is-primary has-text-white is-medium" %>
+        <%= button_to "Checkout", checkout_create_path, method: :post, data: { turbo: false }, class: "button is-primary has-text-white is-medium" %>
       </div>
     <% else %>
       <div class="notification has-text-centered">
