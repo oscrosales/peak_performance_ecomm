@@ -4,8 +4,9 @@
 
     <h2 class="subtitle">Shipping To:</h2>
     <p><%= params[:name] %></p>
+    <p><%= params[:address] %></p>
     <p>
-      <%= params[:address] %>, <%= params[:city] %>,
+      <%= params[:city] %>,
       <%= Province.find_by(id: params[:province_id])&.abbreviation %> <%= params[:postal_code] %>
     </p>
     <p><%= params[:phone] %></p>
